@@ -70,7 +70,7 @@ MTab:AddToggle({
 	end    
 })
 
-MTab:AddLabel("NOTICE: please buy the free dropper first before using Auto Click Dropper")
+MTab:AddLabel("NOTICE: please buy the free dropper first")
 
 MTab:AddToggle({
 	Name = "Auto Click Dropper",
