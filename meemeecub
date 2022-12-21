@@ -93,7 +93,7 @@ MiscTab:AddButton({
 })
 
 MiscTab:AddButton({
-	Name = "Button!",
+	Name = "Keyboard for mobile",
 	Callback = function()
       		Keyboard()
   	end    
