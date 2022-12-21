@@ -1,22 +1,25 @@
+if game.PlaceId == 221718525 then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "meme hub | Ninja Tycoon", HidePremium = false, SaveConfig = true, ConfigFolder = "memecubb"})
+local playerHead = game.Players.LocalPlayer.Character.Head
+local Window = OrionLib:MakeWindow({Name = "meme hub | Ninja Tycoon", HidePremium = false, SaveConfig = true, ConfigFolder = "memecubb", IntroText = "Ninja Tycoon"})
 
--- values
+
+
+
 getgenv().Team = "Hyago Clan"
 getgenv().collect = true
 getgenv().clickio = true
 
 -- functionss
 function Coolect()
-    local playerHead = game.Players.LocalPlayer.Character.Head
     while wait() do
-         if not getgenv().collect then break end
-         for i, v in pairs(game:GetService("Workspace")["Zednov's Tycoon Kit"].Tycoons["getgenv().Team"].Essentials.Giver:GetChildren()) do
-             if v.Name == "TouchInterest" and v.Parent then
-                 firetouchinterest(playerHead, v.Parent, 0)
-                 wait(0.001)
-                 firetouchinterest(playerHead, v.Parent, 1)
-                 break;
+        if not getgenv().collect then break end
+        for i, v in pairs(game:GetService("Workspace")["Zednov's Tycoon Kit"].Tycoons[getgenv().Team].Essentials.Giver:GetChildren()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(playerHead, v.Parent, 0)
+                wait(0.001)
+                firetouchinterest(playerHead, v.Parent, 1)
+                break;
              end
          end        
     end
@@ -24,9 +27,10 @@ end
 
 function C1ckio()
     while clickio == true do
-  fireclickdetector(getgenv().Team.PurchasedObjects.Mine.Clicker.ClickDetector)
+      fireclickdetector(getgenv().Team.PurchasedObjects.Mine.Clicker.ClickDetector)
+      wait(0.00000000000000000000000000000001)
+     end
     end
-end
 
 
 
@@ -39,12 +43,13 @@ local MTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-Tab:AddDropdown({
+MTab:AddDropdown({
 	Name = "Choose Tycoon",
 	Default = "Hyago Clan",
-	Options = {"Hyago Clan", "Sonju Clan", "Akatsuke Clan", "Uchika Clan", "Kazeka Clan", "Otsusushi Clan", "Sarukobi Clan", "Uzumonki Clan, "Hotate Clan"},
+	Options = {"Hyago Clan", "Sonju Clan", "Akatsuke Clan", "Uchika Clan", "Kazeka Clan", "Otsusushi Clan", "Sarukobi Clan", "Uzumonki Clan", "Hotate Clan"},
 	Callback = function(Value)
 		getgenv().Team = Value
+                print(getgenv().Team)
 	end    
 })
 
@@ -52,7 +57,7 @@ MTab:AddToggle({
 	Name = "Auto Collect Cash",
 	Default = false,
 	Callback = function(Value)
-		getgenv().Team = Value
+		getgenv().collect = true
                 Coolect()
 	end    
 })
@@ -61,7 +66,7 @@ MTab:AddToggle({
 	Name = "Auto Click Dropper",
 	Default = false,
 	Callback = function(Value)
-		getgenv().Team = Value
+		getgenv().clickio = true
                 C1ckio()
 	end    
 })
