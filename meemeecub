@@ -12,7 +12,7 @@ getgenv().clickio = true
 
 -- functionss
 function Coolect()
-    while wait() do
+    while collect == true do
         if not getgenv().collect then break end
         for i, v in pairs(game:GetService("Workspace")["Zednov's Tycoon Kit"].Tycoons[getgenv().Team].Essentials.Giver:GetChildren()) do
             if v.Name == "TouchInterest" and v.Parent then
@@ -27,10 +27,18 @@ end
 
 function C1ckio()
     while clickio == true do
-      fireclickdetector(getgenv().Team.PurchasedObjects.Mine.Clicker.ClickDetector)
+      fireclickdetector(game:GetService("Workspace")["Zednov's Tycoon Kit"].Tycoons[getgenv().Team].PurchasedObjects.Mine.Clicker.ClickDetector)
       wait(0.00000000000000000000000000000001)
      end
     end
+
+function InfiniteYield()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end
+
+function Keyboard()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end
 
 
 
@@ -46,7 +54,7 @@ local MTab = Window:MakeTab({
 MTab:AddDropdown({
 	Name = "Choose Tycoon",
 	Default = "Hyago Clan",
-	Options = {"Hyago Clan", "Sonju Clan", "Akatsuke Clan", "Uchika Clan", "Kazeka Clan", "Otsusushi Clan", "Sarukobi Clan", "Uzumonki Clan", "Hotate Clan"},
+	Options = {"Hyago Clan", "Sonju Clan", "Akatsuke", "Uchika Clan", "Kazeka Clan", "Otsusushi Clan", "Sarukobi Clan", "Uzumonki Clan", "Hotate Clan"},
 	Callback = function(Value)
 		getgenv().Team = Value
                 print(getgenv().Team)
@@ -57,7 +65,7 @@ MTab:AddToggle({
 	Name = "Auto Collect Cash",
 	Default = false,
 	Callback = function(Value)
-		getgenv().collect = true
+		getgenv().collect = Value
                 Coolect()
 	end    
 })
@@ -66,10 +74,40 @@ MTab:AddToggle({
 	Name = "Auto Click Dropper",
 	Default = false,
 	Callback = function(Value)
-		getgenv().clickio = true
+		getgenv().clickio = Value
                 C1ckio()
 	end    
 })
+
+local MiscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MiscTab:AddButton({
+	Name = "Infinite yield",
+	Callback = function()
+      		InfiniteYield()
+  	end    
+})
+
+MiscTab:AddButton({
+	Name = "Button!",
+	Callback = function()
+      		Keyboard()
+  	end    
+})
+
+local CTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+CTab:AddLabel("made by silence santa#6534")
+
+
 
 
 
